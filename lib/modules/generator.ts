@@ -7,7 +7,7 @@ export function startSimulation({ db }) {
 }
 
 export function generateBet({ db }) {
-   const area = Math.floor(Math.random()) ? Area.COUNTRY : Area.VOIVODESHIP;
+   const area = Math.random() > 0.5 ? Area.COUNTRY : Area.VOIVODESHIP;
    const position = area === Area.VOIVODESHIP ? getRandomVovoideship() : getRandomCountry();
    const newBet = {
       id: Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5),
