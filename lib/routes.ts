@@ -3,14 +3,14 @@ import {calculateProgress} from "./helpers/ProgressCalculate";
 
 export class Routes {
 
-    public routes({app, db}): void {
+    public routes({app, db, config}): void {
 
         app.route('/bets')
             .get((req: Request, res: Response) => {
                 const response = {
                     progress: {
-                        country: calculateProgress(db.bet, Area.COUNTRY, 1000),
-                        voivodeship: calculateProgress(db.bet, Area.VOIVODESHIP, 200)
+                        country: calculateProgress(db.bet, Area.COUNTRY, config.COUNTRY_LIMIT),
+                        voivodeship: calculateProgress(db.bet, Area.VOIVODESHIP, config.VOIVODESHIP_LIMIT)
                     },
                     bets: db.bets,
                     results: db.results,

@@ -1,16 +1,19 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import {Routes} from "./routes";
+import {CONFIG} from "./config";
 
 class App {
 
     public db: Database;
     public app: express.Application;
+    public config: any;
     public routes: Routes = new Routes();
 
     constructor() {
         this.app = express();
-        this.config();
+        this.config = CONFIG;
+        this.configApp();
         this.configDB();
         this.routes.routes(this);
 
@@ -29,7 +32,7 @@ class App {
 
     }
 
-    private config(): void{
+    private configApp(): void{
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
         // serving static files

@@ -1,0 +1,4 @@
+export const CONFIG = {
+    COUNTRY_LIMIT: 100,
+    VOIVODESHIP_LIMIT: 1000
+};
