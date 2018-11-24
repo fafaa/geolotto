@@ -8,4 +8,7 @@ export interface Result {
         userId: string
         prize: number
     }>
+    total: number,
+    winnersTotal: number,
+    betsTotal: number
 }
