@@ -53,7 +53,7 @@ export class Routes {
                     if (friendBetId) {
                         db.bets = db.bets.map((bet: Bet) => {
                             if (bet.id == friendBetId) {
-                                bet.distanceFactor = bet.distanceFactor * config.DISTANCE_MULTIPLY
+                                bet.distanceFactor = bet.distanceFactor + config.FRIEND_DISTANCE_ADD
                             }
                             return bet;
                         })
