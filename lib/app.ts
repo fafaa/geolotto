@@ -15,11 +15,14 @@ class App {
         this.routes.routes(this.app);
     }
 
+
+
     private configDB(): void {
         this.db = {
             users: [],
             bets: [],
-            betsArchive: []
+            betsArchive: [],
+            results: []
         };
     }
 

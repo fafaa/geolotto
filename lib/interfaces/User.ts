@@ -3,4 +3,5 @@ interface User {
     name: string,
     bets: string[]
     email: string
+    balance: number
 }
