@@ -1,5 +1,5 @@
 import {Database} from "../interfaces/Database";
-import {calculateProgress, getRandomCountry, getRandomWarsaw} from "./ProgressCalculate";
+import {calculateProgress, getRandomCountry, getRandomVovoideship} from "./ProgressCalculate";
 import {Area} from "../interfaces/Area";
 import {Position} from "../interfaces/Position";
 import {Bet} from "../interfaces/Bet";
@@ -14,7 +14,7 @@ export function calculateLottery(db:Database, config:any):void{
 }
 
 export function calculateResults(db:Database, type: Area):void {
-    const randomPoint:Position = type === Area.VOIVODESHIP ? getRandomWarsaw() : getRandomCountry();
+    const randomPoint:Position = type === Area.VOIVODESHIP ? getRandomVovoideship() : getRandomCountry();
     const bets = db.bets.filter((bet: Bet) => bet.area === type);
     const oldBets = db.bets.filter((bet: Bet) => bet.area !== type);
 

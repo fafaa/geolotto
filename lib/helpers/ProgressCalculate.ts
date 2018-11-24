@@ -21,7 +21,7 @@ export function calculateProgress(bets: Bet[], type: Area, max: number) {
 
 const WARSAW_CORDS = { lon: 20.003, lat: 52.009 };
 const POLAND_CORDS = { lon: 16.003, lat: 50.009 }; //54 22
-export function getRandomWarsaw() {
+export function getRandomVovoideship() {
    return {
       lat: WARSAW_CORDS.lat + Math.random() * 10,
       lon: WARSAW_CORDS.lon + Math.random() * 10
