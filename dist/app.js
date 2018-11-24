@@ -2,12 +2,21 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const bodyParser = require("body-parser");
+const routes_1 = require("./routes");
 class App {
-    //public routes: Routes = new Routes();
     constructor() {
+        this.routes = new routes_1.Routes();
         this.app = express();
         this.config();
-        // this.routes.routes(this.app);
+        this.configDB();
+        this.routes.routes(this.app);
+    }
+    configDB() {
+        this.db = {
+            users: [],
+            bets: [],
+            betsArchive: []
+        };
     }
     config() {
         this.app.use(bodyParser.json());

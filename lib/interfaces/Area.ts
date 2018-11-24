@@ -1,0 +1,4 @@
+enum Area {
+    COUNTRY,
+    VOIVODESHIP,
+}

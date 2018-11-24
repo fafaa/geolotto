@@ -4,19 +4,23 @@ import {Routes} from "./routes";
 
 class App {
 
-    public db: any;
+    public db: Database;
     public app: express.Application;
     public routes: Routes = new Routes();
 
     constructor() {
         this.app = express();
         this.config();
-
+        this.configDB();
         this.routes.routes(this.app);
     }
 
     private configDB(): void {
-        this.db = {};
+        this.db = {
+            users: [],
+            bets: [],
+            betsArchive: []
+        };
     }
 
     private config(): void{
