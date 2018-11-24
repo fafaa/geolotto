@@ -7,6 +7,5 @@ export interface Bet {
     userId: string
     rangeFactor: number,
     distanceFactor: number
-    reflink: string
     area: Area
 }

@@ -3,7 +3,7 @@ import {calculateProgress, getRandomCountry, getRandomVovoideship} from "./Progr
 import {Area} from "../interfaces/Area";
 import {Position} from "../interfaces/Position";
 import {Bet} from "../interfaces/Bet";
-import { getDistance }  from "geolib";
+import {getDistance} from "geolib";
 
 export function calculateLottery(db:Database, config:any):void{
     if(calculateProgress(db.bets, Area.VOIVODESHIP, config.VOIVODESHIP_LIMIT) > 1){
@@ -75,7 +75,8 @@ export function calculateResults(db:Database, type: Area, prize: number, minimum
         }).sort((a, b) => a.prize <= b.prize ? 1 : -1),
         winnersTotal: prizes.length,
         betsTotal: bets.length,
-        total: totalPrizes
+        total: totalPrizes,
+        area: type
     });
     db.betsArchive = db.betsArchive.concat(bets);
     db.bets = oldBets;

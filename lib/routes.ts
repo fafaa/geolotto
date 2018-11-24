@@ -39,8 +39,7 @@ export class Routes {
                         },
                         rangeFactor: 1,
                         userId: userId,
-                        area: area === 1 ? Area.COUNTRY : Area.VOIVODESHIP,
-                        reflink: `http://geo.lotto.pl/bet?friendBetId=${id}`,
+                        area
                     };
                     // update balance
                     db.users = db.users.map((user: User) => {

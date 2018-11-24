@@ -1,4 +1,5 @@
 import {Position} from './Position';
+import {Area} from "./Area";
 
 export interface Result {
     id: string,
@@ -10,5 +11,6 @@ export interface Result {
     }>
     total: number,
     winnersTotal: number,
-    betsTotal: number
+    betsTotal: number,
+    area: Area
 }

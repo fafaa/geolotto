@@ -1,4 +1,4 @@
 export enum Area {
-    COUNTRY,
-    VOIVODESHIP,
+    COUNTRY = 1 ,
+    VOIVODESHIP = 0,
 }
