@@ -3,6 +3,7 @@ import * as bodyParser from "body-parser";
 import {Routes} from "./routes";
 import {CONFIG} from "./config";
 import {Database} from "./interfaces/Database";
+import { startSimulation } from "./modules/generator";
 
 class App {
 
@@ -17,7 +18,7 @@ class App {
         this.configApp();
         this.configDB();
         this.routes.routes(this);
-
+        startSimulation(this);
     }
 
     private configDB(): void {

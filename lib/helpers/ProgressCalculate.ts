@@ -18,3 +18,18 @@ export function calculateProgress(bets: Bet[], type: Area, max: number) {
 
     return Math.round((count/max) * 100) / 100;
 }
+
+const WARSAW_CORDS = { lon: 20.003, lat: 52.009 };
+const POLAND_CORDS = { lon: 16.003, lat: 50.009 }; //54 22
+export function getRandomWarsaw() {
+   return {
+      lat: WARSAW_CORDS.lat + Math.random() * 10,
+      lon: WARSAW_CORDS.lon + Math.random() * 10
+   }
+}
+export function getRandomCountry() {
+   return {
+      lat: POLAND_CORDS.lat + Math.random() * 40,
+      lon: POLAND_CORDS.lon + Math.random() * 40
+   }
+}
