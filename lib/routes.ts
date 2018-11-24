@@ -2,6 +2,7 @@ import {Request, Response} from "express";
 import {calculateProgress} from "./helpers/ProgressCalculate";
 import {Area} from './interfaces/Area';
 import {Bet} from "./interfaces/Bet";
+import { generateMultipleBets } from "./modules/generator";
 
 export class Routes {
 
@@ -21,7 +22,7 @@ export class Routes {
                 };
                 res.status(200).json(response);
             });
-
+        
         // adding new bet
         app.route('/bet')
             .post((req: Request, res: Response) => {
@@ -69,8 +70,6 @@ export class Routes {
                     });
                 }
             });
-
-
         app.route('/')
             .get((req: Request, res: Response) => {
                 res.status(200).json({
