@@ -1,20 +1,20 @@
 import {Request, Response, NextFunction} from "express";
+import {calculateProgress} from "./helpers/ProgressCalculate";
 
 export class Routes {
 
-    public routes(app): void {
-
+    public routes({app, db}): void {
 
         app.route('/bets')
             .get((req: Request, res: Response) => {
                 const response = {
                     progress: {
-                        country: 0.1,
-                        voivodeship: 0.3
+                        country: calculateProgress(db.bet, Area.COUNTRY, 1000),
+                        voivodeship: calculateProgress(db.bet, Area.VOIVODESHIP, 200)
                     },
-                    bets: app.db.bets,
-                    results: app.db.results,
-                    user : req.params.userId ? app.db.users.find((user : User) => user.userId === req.params.userId) : null
+                    bets: db.bets,
+                    results: db.results,
+                    user : req.query.userId ? db.users.find((user : User) => user.userId === req.query.userId) : null
                 };
                 res.status(200).json(response);
             })

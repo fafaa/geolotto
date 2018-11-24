@@ -13,9 +13,8 @@ class App {
         this.config();
         this.configDB();
         this.routes.routes(this);
+
     }
-
-
 
     private configDB(): void {
         this.db = {
@@ -24,6 +23,10 @@ class App {
             betsArchive: [],
             results: []
         };
+    }
+
+    private simulateTraffic(){
+
     }
 
     private config(): void{
