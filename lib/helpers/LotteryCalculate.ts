@@ -1,6 +1,8 @@
 import {Database} from "../interfaces/Database";
-import {calculateProgress} from "./ProgressCalculate";
+import {calculateProgress, getRandomCountry, getRandomWarsaw} from "./ProgressCalculate";
 import {Area} from "../interfaces/Area";
+import {Position} from "../interfaces/Position";
+import {Bet} from "../interfaces/Bet";
 
 export function calculateLottery(db:Database, config:any):void{
     if(calculateProgress(db.bets, Area.VOIVODESHIP, config.VOIVODESHIP_LIMIT) > 100){
@@ -12,6 +14,9 @@ export function calculateLottery(db:Database, config:any):void{
 }
 
 export function calculateResults(db:Database, type: Area):void {
-    const randomPoint = []
+    const randomPoint:Position = type === Area.VOIVODESHIP ? getRandomWarsaw() : getRandomCountry();
+    const bets = db.bets.filter((bet: Bet) => bet.area === type);
+    const oldBets = db.bets.filter((bet: Bet) => bet.area !== type);
 
+    db.bets = oldBets;
 }
