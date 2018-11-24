@@ -1,4 +1,5 @@
 import {Bet} from "./Bet";
+import {Result} from "./Result";
 
 export interface Database {
     bets : Bet[],
