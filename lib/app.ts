@@ -12,7 +12,7 @@ class App {
         this.app = express();
         this.config();
         this.configDB();
-        this.routes.routes(this.app);
+        this.routes.routes(this);
     }
 
 
