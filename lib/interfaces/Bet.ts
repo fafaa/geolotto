@@ -1,4 +1,6 @@
-interface Bet {
+import {Area} from "./Area";
+
+export interface Bet {
     id: string
     position: {
         lat: number

@@ -1,3 +1,5 @@
+import {Area} from "../interfaces/Area";
+import {Bet} from "../interfaces/Bet";
 /**
  *
  * @param bets
@@ -5,6 +7,7 @@
  * @param max
  * @constructor
  */
+
 export function calculateProgress(bets: Bet[], type: Area, max: number) {
     const count = bets.reduce((acc: number, bet: Bet) => {
         if(bet.area === type){

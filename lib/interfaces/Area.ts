@@ -1,4 +1,4 @@
-enum Area {
+export enum Area {
     COUNTRY,
     VOIVODESHIP,
 }

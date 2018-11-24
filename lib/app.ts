@@ -2,6 +2,7 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import {Routes} from "./routes";
 import {CONFIG} from "./config";
+import {Database} from "./interfaces/Database";
 
 class App {
 
