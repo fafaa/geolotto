@@ -11,5 +11,4 @@ export interface Bet {
     distanceFactor: number
     reflink: string
     area: Area
-    areaId: number
 }

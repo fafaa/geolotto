@@ -22,7 +22,13 @@ class App {
 
     private configDB(): void {
         this.db = {
-            users: [],
+            users: [{
+                userId: '1',
+                balance: 100,
+                bets: [],
+                email: 'eryk.zimonczyk@gmail.com',
+                name: 'Eryk Zimonczyk'
+            }],
             bets: [],
             betsArchive: [],
             results: []
