@@ -1,5 +1,7 @@
 import {Area} from "../interfaces/Area";
 import {Bet} from "../interfaces/Bet";
+import { CONFIG } from '../config';
+const { WARSAW_CORDS, POLAND_CORDS } = CONFIG;
 /**
  *
  * @param bets
@@ -19,17 +21,15 @@ export function calculateProgress(bets: Bet[], type: Area, max: number) {
     return Math.round((count/max) * 100) / 100;
 }
 
-const WARSAW_CORDS = { lon: 20.003, lat: 52.009 };
-const POLAND_CORDS = { lon: 16.003, lat: 50.009 }; //54 22
 export function getRandomVovoideship() {
    return {
-      lat: WARSAW_CORDS.lat + Math.random() * 10,
-      lon: WARSAW_CORDS.lon + Math.random() * 10
+    lat: WARSAW_CORDS.latStart + Math.random() * (WARSAW_CORDS.latEnd - WARSAW_CORDS.latStart),
+    lon: WARSAW_CORDS.lonStart + Math.random() * (WARSAW_CORDS.lonEnd - WARSAW_CORDS.lonStart),
    }
 }
 export function getRandomCountry() {
    return {
-      lat: POLAND_CORDS.lat + Math.random() * 40,
-      lon: POLAND_CORDS.lon + Math.random() * 40
+      lat: POLAND_CORDS.latStart + Math.random() * (POLAND_CORDS.latEnd - POLAND_CORDS.latStart),
+      lon: POLAND_CORDS.lonStart + Math.random() * (POLAND_CORDS.lonEnd - POLAND_CORDS.lonStart),
    }
 }
