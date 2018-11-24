@@ -14,6 +14,15 @@ export function calculateLottery(db:Database, config:any):void{
     }
 }
 
+export function addMoneyToUser(db:Database, userId:string, prize:number){
+    db.users.forEach((user : User) => {
+        if(user.userId === userId){
+            user.balance = user.balance + prize;
+        }
+    });
+    return db;
+}
+
 export function calculateResults(db:Database, type: Area, prize: number, minimumWin: number):void {
     const randomPoint:Position = type === Area.VOIVODESHIP ? getRandomVovoideship() : getRandomCountry();
     const bets = db.bets.filter((bet: Bet) => bet.area === type);
@@ -62,22 +71,27 @@ export function calculateResults(db:Database, type: Area, prize: number, minimum
     });
 
     const id:string = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
-    db.results.push({
+    const result = {
         id: id,
         position: randomPoint,
         time: Date.now(),
         winners: prizes.map((score) => {
             return {
-              userId: score.bet.userId,
-              prize: score.prize,
-              distance: score.range
+                userId: score.bet.userId,
+                prize: score.prize,
+                distance: score.range
             };
         }).sort((a, b) => a.prize <= b.prize ? 1 : -1),
         winnersTotal: prizes.length,
         betsTotal: bets.length,
         total: totalPrizes,
         area: type
+    };
+
+    result.winners.forEach((winner) => {
+        db = addMoneyToUser(db, winner.userId, winner.prize);
     });
+    db.results.push(result);
     db.betsArchive = db.betsArchive.concat(bets);
     db.bets = oldBets;
 }

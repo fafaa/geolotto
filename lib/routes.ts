@@ -2,7 +2,6 @@ import {Request, Response} from "express";
 import {calculateProgress} from "./helpers/ProgressCalculate";
 import {Area} from './interfaces/Area';
 import {Bet} from "./interfaces/Bet";
-import { generateMultipleBets } from "./modules/generator";
 
 export class Routes {
 
