@@ -5,10 +5,10 @@ import {Position} from "../interfaces/Position";
 import {Bet} from "../interfaces/Bet";
 
 export function calculateLottery(db:Database, config:any):void{
-    if(calculateProgress(db.bets, Area.VOIVODESHIP, config.VOIVODESHIP_LIMIT) > 100){
+    if(calculateProgress(db.bets, Area.VOIVODESHIP, config.VOIVODESHIP_LIMIT) > 1){
         calculateResults(db, Area.VOIVODESHIP);
     }
-    if(calculateProgress(db.bets, Area.COUNTRY, config.COUNTRY_LIMIT) > 100){
+    if(calculateProgress(db.bets, Area.COUNTRY, config.COUNTRY_LIMIT) > 1){
         calculateResults(db, Area.COUNTRY);
     }
 }
