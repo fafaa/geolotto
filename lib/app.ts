@@ -3,6 +3,7 @@ import * as bodyParser from "body-parser";
 import {Routes} from "./routes";
 import {CONFIG} from "./config";
 import {Database} from "./interfaces/Database";
+import {calculateLottery} from "./helpers/LotteryCalculate";
 
 class App {
 
@@ -11,11 +12,14 @@ class App {
     public config: any;
     public routes: Routes = new Routes();
 
+    public intervalLottery: NodeJS.Timeout;
+
     constructor() {
         this.app = express();
         this.config = CONFIG;
         this.configApp();
         this.configDB();
+        this.runLotteryInterval();
         this.routes.routes(this);
 
     }
@@ -35,8 +39,10 @@ class App {
         };
     }
 
-    private simulateTraffic(){
-
+    private runLotteryInterval(){
+        this.intervalLottery = setInterval(() => {
+            calculateLottery(this.db, this.config);
+        }, 100);
     }
 
     private configApp(): void{
