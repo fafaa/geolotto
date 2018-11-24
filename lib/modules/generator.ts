@@ -22,7 +22,7 @@ export function generateBet(betData: any = {}) {
       id,
       position,
       userId: Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5),
-      rangeFactor: Math.random() * 20 + 1,
+      rangeFactor: Math.floor((Math.random() * 30 + 1)),
       distanceFactor: Math.random(),
       reflink: `http://geo.lotto.pl/bet?friendBetId=${id}`,
       area,
