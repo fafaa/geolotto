@@ -26,7 +26,7 @@ export function calculateResults(db:Database, type: Area, prize: number, minimum
             {latitude: randomPoint.lat, longitude: randomPoint.lon},
             {latitude: lat, longitude: lon}
         );
-        let range = distance/1000 - bet.distanceFactor ;
+        let range = distance/1000 - bet.rangeFactor;
         range = range < 0 ? 0 : range;
         return {
             range,
@@ -46,17 +46,17 @@ export function calculateResults(db:Database, type: Area, prize: number, minimum
 
     let revertDistanceGlobal = 0;
     const factors = multipliedSorted.map((score) => {
-        score.revertRange =  distanceGlobal / score.range;
+
+        score.revertRange =  score.range > 0 ? distanceGlobal / score.range : 0.00001;
         revertDistanceGlobal = revertDistanceGlobal + score.revertRange;
         return score;
     });
     let totalPrizes = 0;
 
-
     const prizes = factors.filter((factor) => {
         const betPrize = (factor.revertRange / revertDistanceGlobal * prize);
-
-        factor.prize = betPrize >= minimumWin ? Math.floor(betPrize * 100 ) / 100 : 0;
+        const factoredPrize = factor.bet.distanceFactor  * betPrize;
+        factor.prize = (factoredPrize >= minimumWin ? Math.floor(factoredPrize * 100 ) / 100 : 0);
         totalPrizes = totalPrizes + factor.prize;
         return factor.prize;
     });
@@ -72,7 +72,7 @@ export function calculateResults(db:Database, type: Area, prize: number, minimum
               prize: score.prize,
               distance: score.range
             };
-        }),
+        }).sort((a, b) => a.prize <= b.prize ? 1 : -1),
         winnersTotal: prizes.length,
         betsTotal: bets.length,
         total: totalPrizes

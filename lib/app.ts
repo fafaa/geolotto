@@ -5,7 +5,7 @@ import * as cors from "cors";
 import {Routes} from "./routes";
 import {CONFIG} from "./config";
 import {Database} from "./interfaces/Database";
-import { startSimulation } from "./modules/generator";
+import {generateMultipleBets, startSimulation} from "./modules/generator";
 import {calculateLottery} from "./helpers/LotteryCalculate";
 
 class App {
@@ -25,6 +25,7 @@ class App {
         this.runLotteryInterval();
         this.routes.routes(this);
         startSimulation(this.db);
+        generateMultipleBets(this.db, 500);
     }
 
     private configDB(): void {
