@@ -81,7 +81,8 @@ export function calculateResults(db:Database, type: Area, prize: number, minimum
                 prize: score.prize,
                 distance: score.range,
                 betId: score.bet.id,
-                area: score.bet.area
+                area: score.bet.area,
+                position: score.bet.position
             };
         }).sort((a, b) => a.prize <= b.prize ? 1 : -1),
         winnersTotal: prizes.length,

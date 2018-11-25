@@ -9,9 +9,9 @@ export interface Result {
         userId: string
         prize: number
         betId?: string,
-        distance?: number
-        area?: Area
-    }>
+        distance?: number,
+        area?: Area,
+        position?: Position
     total: number,
     winnersTotal: number,
     betsTotal: number,
