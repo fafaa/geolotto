@@ -20,8 +20,7 @@ export class Routes {
                         const resultWins = result.winners.filter((winner) => {
                             return winner.userId.toString() == req.query.userId.toString();
                         });
-                        console.info(resultWins);
-                        acc.concat(resultWins);
+                        acc = acc.concat(resultWins);
                         return acc;
                     }, []);
 
