@@ -18,7 +18,7 @@ export class Routes {
                 if(req.query.userId){
                     const userWins = db.results.reduce((acc, result) => {
                         const resultWins = result.winners.filter((winner) => {
-                            return winner.userId == req.query.userId.toString();
+                            return winner.userId.toString() == req.query.userId.toString();
                         });
                         acc.concat(resultWins);
                         return acc;
@@ -33,7 +33,7 @@ export class Routes {
                         bet.prize = p ? p.prize : null;
                         return bet.userId === req.query.userId;
                     });
-                    res.status(200).json({
+                    return res.status(200).json({
                         userWins,
                         userCurrentBets,
                         userArchiveBets,
@@ -89,7 +89,7 @@ export class Routes {
                     if (friendBetId) {
                         db.bets = db.bets.map((bet: Bet) => {
                             if (bet.id == friendBetId) {
-                                bet.distanceFactor = bet.distanceFactor + config.FRIEND_DISTANCE_ADD
+                                bet.rangeFactor = bet.rangeFactor + config.FRIEND_DISTANCE_ADD
                             }
                             return bet;
                         })

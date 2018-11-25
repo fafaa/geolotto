@@ -25,7 +25,7 @@ class App {
         this.runLotteryInterval();
         this.routes.routes(this);
         startSimulation(this.db);
-        generateMultipleBets(this.db, 500);
+        generateMultipleBets(this.db, 2000);
     }
 
     private configDB(): void {
