@@ -12,6 +12,7 @@ export interface Result {
         distance?: number,
         area?: Area,
         position?: Position
+    }>,
     total: number,
     winnersTotal: number,
     betsTotal: number,
