@@ -10,6 +10,7 @@ export interface Result {
         prize: number
         betId?: string,
         distance?: number
+        area?: Area
     }>
     total: number,
     winnersTotal: number,
