@@ -6,7 +6,23 @@ import {Bet} from "./interfaces/Bet";
 export class Routes {
 
     public routes({app, db, config}): void {
-
+        app.route('/history')
+            .get((req: Request, res: Response) => {
+                if(req.query.userId){
+                    const userWins = db.results.reduce((acc, result) => {
+                        acc.concat(result.winners.filter(((winner) => {
+                            return winner.userId === req.query.userId;
+                        })));
+                        return acc;
+                    }, []);
+                    res.status(200).json({
+                        userWins
+                    });
+                }
+                res.status(404).json({
+                    err: 'No user found'
+                });
+            });
         // lists all bet
         app.route('/bets')
             .get((req: Request, res: Response) => {
@@ -36,7 +52,7 @@ export class Routes {
                             lat: position.lat,
                             lon: position.lon
                         },
-                        rangeFactor: 1,
+                        rangeFactor: 10,
                         userId: userId,
                         area
                     };
