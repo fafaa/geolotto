@@ -6,7 +6,7 @@ import {Bet} from "./interfaces/Bet";
 export class Routes {
 
     public routes({app, db, config}): void {
-        app.route('/history')
+        app.route('/account')
             .get((req: Request, res: Response) => {
                 if(req.query.userId){
                     const userWins = db.results.reduce((acc, result) => {
@@ -15,8 +15,16 @@ export class Routes {
                         })));
                         return acc;
                     }, []);
+                    const userCurrentBets = db.bets.filter((bet:Bet) => {
+                        return bet.userId == req.query.userId;
+                    });
+                    const userArchiveBets = db.betsArchive.filter((bet:Bet) => {
+                        return bet.userId == req.query.userId;
+                    });
                     res.status(200).json({
-                        userWins
+                        userWins,
+                        userCurrentBets,
+                        userArchiveBets
                     });
                 }
                 res.status(404).json({
