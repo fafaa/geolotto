@@ -19,7 +19,9 @@ export class Routes {
                         return bet.userId == req.query.userId;
                     });
                     const userArchiveBets = db.betsArchive.filter((bet:Bet) => {
-                        return bet.userId == req.query.userId;
+                        const p = userWins.find((win) => win.betId === bet.id);
+                        bet.prize = p ? p.prize : null;
+                        return bet.userId === req.query.userId;
                     });
                     res.status(200).json({
                         userWins,

@@ -8,6 +8,8 @@ export interface Result {
     winners: Array<{
         userId: string
         prize: number
+        betId?: string,
+        distance?: number
     }>
     total: number,
     winnersTotal: number,

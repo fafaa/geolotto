@@ -79,7 +79,8 @@ export function calculateResults(db:Database, type: Area, prize: number, minimum
             return {
                 userId: score.bet.userId,
                 prize: score.prize,
-                distance: score.range
+                distance: score.range,
+                betId: score.bet.id
             };
         }).sort((a, b) => a.prize <= b.prize ? 1 : -1),
         winnersTotal: prizes.length,

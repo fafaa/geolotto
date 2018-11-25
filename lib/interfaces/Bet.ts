@@ -8,4 +8,5 @@ export interface Bet {
     rangeFactor: number,
     distanceFactor: number
     area: Area
+    prize?: number
 }
