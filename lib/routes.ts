@@ -6,13 +6,21 @@ import {Bet} from "./interfaces/Bet";
 export class Routes {
 
     public routes({app, db, config}): void {
+        app.route('/results')
+            .get((req: Request, res: Response) => {
+                const response = {
+                    results: db.results,
+                };
+                res.status(200).json(response);
+            });
         app.route('/account')
             .get((req: Request, res: Response) => {
                 if(req.query.userId){
                     const userWins = db.results.reduce((acc, result) => {
-                        acc.concat(result.winners.filter(((winner) => {
+                        const resultWins = result.winners.filter(((winner) => {
                             return winner.userId === req.query.userId;
-                        })));
+                        }));
+                        acc.concat(resultWins);
                         return acc;
                     }, []);
                     const userCurrentBets = db.bets.filter((bet:Bet) => {
