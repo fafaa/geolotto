@@ -34,7 +34,8 @@ export class Routes {
                     res.status(200).json({
                         userWins,
                         userCurrentBets,
-                        userArchiveBets
+                        userArchiveBets,
+                        user: db.users.find((user) => user.userId == req.query.userId)
                     });
                 }
                 res.status(404).json({
