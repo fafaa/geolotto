@@ -17,12 +17,14 @@ export class Routes {
             .get((req: Request, res: Response) => {
                 if(req.query.userId){
                     const userWins = db.results.reduce((acc, result) => {
-                        const resultWins = result.winners.filter(((winner) => {
+                        const resultWins = result.winners.filter((winner) => {
                             return winner.userId == req.query.userId.toString();
-                        }));
+                        });
                         acc.concat(resultWins);
                         return acc;
                     }, []);
+
+
                     const userCurrentBets = db.bets.filter((bet:Bet) => {
                         return bet.userId == req.query.userId;
                     });
