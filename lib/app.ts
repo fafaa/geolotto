@@ -36,23 +36,30 @@ class App {
                 bets: [],
                 email: 'eryk.zimonczyk@gmail.com',
                 name: 'Eryk Zimonczyk'
-            }],
+            },
+                {
+                    userId: '2',
+                    balance: 400,
+                    bets: [],
+                    email: 'jannowak@gmail.com',
+                    name: 'Jan Nowak'
+                }],
             bets: [],
             betsArchive: [],
             results: []
         };
     }
 
-    private runLotteryInterval(){
+    private runLotteryInterval() {
         this.intervalLottery = setInterval(() => {
             calculateLottery(this.db, this.config);
         }, 100);
     }
 
-    private configApp(): void{
+    private configApp(): void {
         this.app.use(cors());
         this.app.use(bodyParser.json());
-        this.app.use(bodyParser.urlencoded({ extended: false }));
+        this.app.use(bodyParser.urlencoded({extended: false}));
         // serving static files
         this.app.use(express.static('public'));
     }

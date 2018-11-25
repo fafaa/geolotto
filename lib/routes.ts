@@ -18,7 +18,7 @@ export class Routes {
                 if(req.query.userId){
                     const userWins = db.results.reduce((acc, result) => {
                         const resultWins = result.winners.filter(((winner) => {
-                            return winner.userId === req.query.userId;
+                            return winner.userId == req.query.userId.toString();
                         }));
                         acc.concat(resultWins);
                         return acc;
